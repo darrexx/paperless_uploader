@@ -47,7 +47,7 @@ fn build_body(path: PathBuf) -> Result<Form, anyhow::Error> {
 
     let filename = path
         .file_name()
-        .ok_or(anyhow!("could not read filename of path"))
+        .ok_or_else(|| anyhow!("could not read filename of path"))
         .log_if_error(format!("could not read filename of path {:?}", path))?
         .to_os_string()
         .into_string()
